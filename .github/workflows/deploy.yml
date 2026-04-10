@@ -13,5 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy to Render
-        run: echo "Deploying application..."
+      - name: Trigger Render Deploy
+        run: |
+          curl -X POST https://api.render.com/deploy/srv-d7c8sm57vvec73b2m54g \
+          -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}"
+
+
+
