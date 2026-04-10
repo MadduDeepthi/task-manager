@@ -5,7 +5,7 @@ let tasks = [];
 const server = http.createServer((req, res) => {
 
   if (req.method === 'GET' && req.url === '/') {
-    res.end("Task Manager API 🚀");
+    res.end("Task Manager API 🚀 CI/CD WORKING");
   }
 
   else if (req.method === 'GET' && req.url === '/tasks') {

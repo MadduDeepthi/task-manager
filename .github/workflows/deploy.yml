@@ -16,11 +16,11 @@ jobs:
       - name: Deploy to AWS EC2
         uses: appleboy/ssh-action@v1.0.0
         with:
-          host: 54.209.212.31
+          host: 54.144.227.128
           username: ubuntu
           key: ${{ secrets.AWS_SSH_KEY }}
           script: |
             cd task-manager
             git pull origin main
             npm install
-            pm2 restart app
+            pm2 restart task-app
