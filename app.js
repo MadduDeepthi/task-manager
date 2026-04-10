@@ -3,7 +3,12 @@ const http = require('http');
 let tasks = [];
 
 const server = http.createServer((req, res) => {
-  if (req.method === 'GET' && req.url === '/tasks') {
+
+  if (req.method === 'GET' && req.url === '/') {
+    res.end("Task Manager API 🚀");
+  }
+
+  else if (req.method === 'GET' && req.url === '/tasks') {
     res.end(JSON.stringify(tasks));
   }
 
