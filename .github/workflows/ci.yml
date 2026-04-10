@@ -1,0 +1,37 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu_latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+  docker: 
+    needs: test
+    runs-on: ubuntu_latest
+
+    steps: 
+      - uses: actions/checkout@v4
+
+      - name: Build docker image
+        run: docker build -t task-app .
+      
+      - name: Test inside docker
+        run: docker run task-app npm test
+  
